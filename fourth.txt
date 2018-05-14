@@ -1,0 +1,52 @@
+{
+        "AWSTemplateFormatVersion": "2010-09-09",
+
+
+        "Resources": {
+                "MyInstance": {
+                        "Type": "AWS::EC2::Instance",
+                        "Properties": {
+                                "SecurityGroups": [{
+                                        "Ref": "InstanceSecurityGroup"
+                                }],
+                                "KeyName": "sneha-private-key-pair",
+                                "ImageId": "ami-7a11e213"
+
+                        }
+
+
+                },
+                "InstanceSecurityGroup": {
+                        "Type": "AWS::EC2::SecurityGroup",
+                        "Properties": {
+                                "GroupDescription": "Enable ssh and hhtp in instance",
+                                "SecurityGroupIngress": [{
+                                                "IpProtocol": "tcp",
+                                                "FromPort": "22",
+                                                "ToPort": "22",
+                                                "CidrIp": "0.0.0.0/0"
+                                        },
+                                        {
+                                                "IpProtocol": "tcp",
+                                                "FromPort": "80",
+                                                "ToPort": "80",
+                                                "CidrIp": "0.0.0.0/0"
+                                        }
+                                ]
+                        }
+                }
+        },
+        "Outputs": {
+                "InstancesecurityGroup": {
+                        "Description": "The security group id to use it further with public subnet",
+                        "Value": {
+                                "Fn::GetAtt": ["InstanceSecurityGroup", "GroupId"]
+                        },
+                        "Export": {
+                                "Name": {
+                                        "Fn::Sub": "${AWS::StackName}-SecurityGroupID"
+                                }
+                        }
+                }
+        }
+}

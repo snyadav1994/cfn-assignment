@@ -19,7 +19,7 @@ except ClientError as e :
     print (error_code)    
 
 
-ec2_client = boto3.client('ec2',region = "us-east-1")
+ec2_client = boto3.client('ec2',region_name = "us-east-1")
 res = ec2_client.describe_images(
             ImageIds = ['ami-2f796554',]
         )

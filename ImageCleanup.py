@@ -3,7 +3,7 @@ from botocore.exceptions import ClientError
 import sys
 
 
-role_arn = "arn:aws:iam::346319152574:role/bot_ec2_reporting"
+role_arn = "arn:aws:iam::346319152574:role/travel-qa-deployment-role"
 role_session_name = "temporarySession"
 
 

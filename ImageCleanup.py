@@ -19,7 +19,8 @@ except ClientError as e :
     print (error_code)    
 
 
-#ec2_client = boto3.client('ec2')
-#response = ec2_client.describe_images(
-#            ImageIds = ['ami-2f796554',]
-#        )
+ec2_client = boto3.client('ec2')
+res = ec2_client.describe_images(
+            ImageIds = ['ami-2f796554',]
+        )
+print (res)

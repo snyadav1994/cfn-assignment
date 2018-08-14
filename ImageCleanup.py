@@ -11,7 +11,7 @@ role_session_name = "temporarySession"
 sts_client = boto3.client('sts')
 try :
     response = sts_client.assume_role(RoleArn=role_arn, RoleSessionName=role_session_name)
-    print (response)
+    #print (response)
 
 except ClientError as e :
     error_code = e.response['Error']['Code']
@@ -23,4 +23,4 @@ ec2_client = boto3.client('ec2',region_name = "us-east-1")
 res = ec2_client.describe_images(
             ImageIds = ['ami-2f796554',]
         )
-print (res)
+print (res["Images"])

@@ -23,4 +23,4 @@ ec2_client = boto3.client('ec2',region_name = "us-east-1")
 res = ec2_client.describe_images(
             ImageIds = ['ami-31fb1a4c',]
         )
-print (res)
+print (res["Images"])

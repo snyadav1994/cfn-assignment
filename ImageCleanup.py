@@ -17,7 +17,7 @@ aws_access_key_id=credentials['AccessKeyId'],
 aws_secret_access_key=credentials['SecretAccessKey'],
 aws_session_token=credentials['SessionToken']
    
-ec2_client = boto3.client('ec2',aws_access_key_id,aws_secret_access_key,aws_session_token,region_name = "us-east-1")
+ec2_client = boto3.client('ec2',aws_access_key_id,aws_secret_access_key,aws_session_token)
 res = ec2_client.describe_images(
             ImageIds = ['ami-00312917',]
         )

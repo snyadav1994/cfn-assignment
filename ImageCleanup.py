@@ -16,7 +16,7 @@ credentials = response['Credentials']
 aws_access_key_id=credentials['AccessKeyId'],
 aws_secret_access_key=credentials['SecretAccessKey'],
 aws_session_token=credentials['SessionToken']
-
+print (credentials)
 boto3.setup_default_session(profile_name='temporarySession')   
 ec2_client = boto3.client('ec2',region_name = "us-east-1")
 res = ec2_client.describe_images(

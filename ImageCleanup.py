@@ -9,16 +9,14 @@ role_session_name = "temporarySession"
 
 
 sts_client = boto3.client('sts')
-try :
-    response = sts_client.assume_role(RoleArn=role_arn, RoleSessionName=role_session_name)
+
+response = sts_client.assume_role(RoleArn=role_arn, RoleSessionName=role_session_name)
     #print (response)
-
-except ClientError as e :
-    error_code = e.response['Error']['Code']
-    print(e)
-    print (error_code)    
-
-
+credentials = response['Credentials']
+aws_access_key_id=credentials['AccessKeyId'],
+aws_secret_access_key=credentials['SecretAccessKey'],
+aws_session_token=credentials['SessionToken']
+   
 ec2_client = boto3.client('ec2',region_name = "us-east-1")
 res = ec2_client.describe_images(
             ImageIds = ['ami-00312917',]
